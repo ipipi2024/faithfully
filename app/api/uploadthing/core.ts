@@ -1,16 +1,32 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { auth } from "@/auth";
 
-const f = createUploadthing();
+const f = createUploadthing({
+  errorFormatter: (err) => {
+    console.error("UploadThing error:", err);
+    return {
+      message: err.message,
+    };
+  },
+});
 
 export const ourFileRouter = {
   productImage: f({ image: { maxFileSize: "4MB", maxFileCount: 2 } })
-    .middleware(async () => {
-      const session = await auth();
+    .middleware(async (req) => {
+      try {
+        const session = await auth();
 
-      if (!session?.user) throw new Error("Unauthorized");
+        if (!session?.user) {
+          console.error("No session found in uploadthing middleware");
+          throw new Error("Unauthorized");
+        }
 
-      return { userId: session.user.email };
+        console.log("Upload authorized for user:", session.user.email);
+        return { userId: session.user.email };
+      } catch (error) {
+        console.error("Error in uploadthing middleware:", error);
+        throw error;
+      }
     })
     .onUploadComplete(async ({ metadata, file }) => {
       console.log("Upload complete for userId:", metadata.userId);
