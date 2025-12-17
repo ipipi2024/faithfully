@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface Product {
   _id: string;
@@ -46,8 +47,9 @@ export default function ProductsPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {products.map((product) => (
-              <div
+              <Link
                 key={product._id}
+                href={`/products/${product._id}`}
                 className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
               >
                 {product.images.length > 0 && (
@@ -60,8 +62,9 @@ export default function ProductsPage() {
                 <div className="p-6">
                   <h2 className="text-2xl font-semibold mb-2">{product.name}</h2>
                   <p className="text-gray-600 line-clamp-3">{product.description}</p>
+                  <p className="text-blue-600 mt-4 font-medium">View details →</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}
