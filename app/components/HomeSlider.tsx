@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 
 export default function HomeSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -105,8 +106,14 @@ export default function HomeSlider() {
           <img
             src="/products/Shutterstock_1607407333 (14).png"
             alt="Faithfully Logo"
-            className="max-w-md mx-auto"
+            className="max-w-md mx-auto mb-8"
           />
+          <Link
+            href="/products"
+            className="inline-block bg-purple-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-purple-700 transition-colors"
+          >
+            Browse Products
+          </Link>
         </div>
       </div>
 
