@@ -3,6 +3,7 @@ import mongoose, { Schema, Document, Model } from 'mongoose';
 export interface IItem extends Document {
   name: string;
   description: string;
+  price: number;
   images: string[];
   createdAt: Date;
   updatedAt: Date;
@@ -21,6 +22,11 @@ const ItemSchema = new Schema<IItem>(
       required: [true, 'Description is required'],
       trim: true,
       maxlength: [1000, 'Description cannot exceed 1000 characters']
+    },
+    price: {
+      type: Number,
+      required: [true, 'Price is required'],
+      min: [0, 'Price must be positive']
     },
     images: {
       type: [String],

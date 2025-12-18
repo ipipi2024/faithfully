@@ -8,6 +8,7 @@ interface Product {
   _id: string;
   name: string;
   description: string;
+  price: number;
   images: string[];
   createdAt: string;
 }
@@ -64,6 +65,7 @@ export default function ProductsPage() {
                 )}
                 <div className="p-6">
                   <h2 className="text-2xl font-semibold mb-2" style={{ color: 'var(--foreground)' }}>{product.name}</h2>
+                  <p className="text-xl font-bold mb-2" style={{ color: 'var(--primary)' }}>${product.price.toFixed(2)}</p>
                   <p className="line-clamp-3" style={{ color: 'var(--muted-foreground)' }}>{product.description}</p>
                   <p className="mt-4 font-medium" style={{ color: 'var(--primary)' }}>View details →</p>
                 </div>

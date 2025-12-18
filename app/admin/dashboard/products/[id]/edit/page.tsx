@@ -10,6 +10,7 @@ import { useUploadThing } from "@/app/lib/uploadthing";
 const productSchema = z.object({
   name: z.string().min(1, "Name is required").max(100, "Name cannot exceed 100 characters"),
   description: z.string().min(1, "Description is required").max(1000, "Description cannot exceed 1000 characters"),
+  price: z.number().min(0, "Price must be positive"),
 });
 
 type ProductForm = z.infer<typeof productSchema>;
@@ -18,6 +19,7 @@ interface Product {
   _id: string;
   name: string;
   description: string;
+  price: number;
   images: string[];
 }
 
@@ -56,6 +58,7 @@ export default function EditProductPage() {
           setExistingImages(data.data.images || []);
           setValue("name", data.data.name);
           setValue("description", data.data.description);
+          setValue("price", data.data.price);
         } else {
           setError("Product not found");
         }
@@ -189,6 +192,22 @@ export default function EditProductPage() {
             />
             {errors.description && (
               <p className="mt-1 text-sm text-red-600">{errors.description.message}</p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="price" className="block text-sm font-medium text-gray-700">
+              Price
+            </label>
+            <input
+              {...register("price", { valueAsNumber: true })}
+              type="number"
+              step="0.01"
+              id="price"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            />
+            {errors.price && (
+              <p className="mt-1 text-sm text-red-600">{errors.price.message}</p>
             )}
           </div>
 

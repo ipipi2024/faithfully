@@ -8,6 +8,7 @@ interface Product {
   _id: string;
   name: string;
   description: string;
+  price: number;
   images: string[];
   createdAt: string;
 }
@@ -95,6 +96,9 @@ export default function ProductsPage() {
                   Product
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Price
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Description
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -114,6 +118,11 @@ export default function ProductsPage() {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm font-medium text-gray-900">
                       {product.name}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm font-medium text-gray-900">
+                      ${product.price.toFixed(2)}
                     </div>
                   </td>
                   <td className="px-6 py-4">
