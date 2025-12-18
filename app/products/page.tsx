@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import ThemeToggle from "../components/ThemeToggle";
 
 interface Product {
   _id: string;
@@ -29,20 +30,21 @@ export default function ProductsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <p className="text-gray-500">Loading products...</p>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--background)' }}>
+        <p style={{ color: 'var(--muted-foreground)' }}>Loading products...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{ background: 'var(--background)' }}>
+      <ThemeToggle />
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <h1 className="text-4xl font-bold text-center mb-12">Our Products</h1>
+        <h1 className="text-4xl font-bold text-center mb-12" style={{ color: 'var(--foreground)' }}>Our Products</h1>
 
         {products.length === 0 ? (
-          <div className="bg-white rounded-lg shadow-md p-12 text-center">
-            <p className="text-gray-500">No products available yet.</p>
+          <div className="rounded-lg shadow-md p-12 text-center" style={{ background: 'var(--card-bg)', border: '1px solid var(--card-border)' }}>
+            <p style={{ color: 'var(--muted-foreground)' }}>No products available yet.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -50,7 +52,8 @@ export default function ProductsPage() {
               <Link
                 key={product._id}
                 href={`/products/${product._id}`}
-                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                className="rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all"
+                style={{ background: 'var(--card-bg)', border: '1px solid var(--card-border)' }}
               >
                 {product.images.length > 0 && (
                   <img
@@ -60,9 +63,9 @@ export default function ProductsPage() {
                   />
                 )}
                 <div className="p-6">
-                  <h2 className="text-2xl font-semibold mb-2">{product.name}</h2>
-                  <p className="text-gray-600 line-clamp-3">{product.description}</p>
-                  <p className="text-blue-600 mt-4 font-medium">View details →</p>
+                  <h2 className="text-2xl font-semibold mb-2" style={{ color: 'var(--foreground)' }}>{product.name}</h2>
+                  <p className="line-clamp-3" style={{ color: 'var(--muted-foreground)' }}>{product.description}</p>
+                  <p className="mt-4 font-medium" style={{ color: 'var(--primary)' }}>View details →</p>
                 </div>
               </Link>
             ))}

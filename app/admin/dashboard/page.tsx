@@ -25,19 +25,20 @@ export default function DashboardHome() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Dashboard</h1>
+      <h1 className="text-3xl font-bold mb-8" style={{ color: 'var(--foreground)' }}>Dashboard</h1>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {/* Total Products Card */}
-        <div className="bg-white overflow-hidden shadow rounded-lg">
+        <div className="overflow-hidden shadow rounded-lg" style={{ background: 'var(--card-bg)', border: '1px solid var(--card-border)' }}>
           <div className="p-5">
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <svg
-                  className="h-6 w-6 text-gray-400"
+                  className="h-6 w-6"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  style={{ color: 'var(--primary)' }}
                 >
                   <path
                     strokeLinecap="round"
@@ -49,20 +50,21 @@ export default function DashboardHome() {
               </div>
               <div className="ml-5 w-0 flex-1">
                 <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">
+                  <dt className="text-sm font-medium truncate" style={{ color: 'var(--muted-foreground)' }}>
                     Total Products
                   </dt>
-                  <dd className="text-3xl font-semibold text-gray-900">
+                  <dd className="text-3xl font-semibold" style={{ color: 'var(--foreground)' }}>
                     {stats.loading ? "..." : stats.totalProducts}
                   </dd>
                 </dl>
               </div>
             </div>
           </div>
-          <div className="bg-gray-50 px-5 py-3">
+          <div className="px-5 py-3" style={{ background: 'var(--muted)' }}>
             <Link
               href="/admin/dashboard/products"
-              className="text-sm font-medium text-blue-600 hover:text-blue-500"
+              className="text-sm font-medium"
+              style={{ color: 'var(--primary)' }}
             >
               View all
             </Link>
@@ -72,11 +74,14 @@ export default function DashboardHome() {
 
       {/* Quick Actions */}
       <div className="mt-8">
-        <h2 className="text-lg font-medium text-gray-900 mb-4">Quick Actions</h2>
-        <div className="bg-white shadow rounded-lg p-6">
+        <h2 className="text-lg font-medium mb-4" style={{ color: 'var(--foreground)' }}>Quick Actions</h2>
+        <div className="shadow rounded-lg p-6" style={{ background: 'var(--card-bg)', border: '1px solid var(--card-border)' }}>
           <Link
             href="/admin/dashboard/products/new"
-            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
+            className="inline-flex items-center px-4 py-2 border-transparent text-sm font-medium rounded-md shadow-sm text-white transition-all"
+            style={{ background: 'var(--primary)' }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--primary-hover)')}
+            onMouseLeave={(e) => (e.currentTarget.style.background = 'var(--primary)')}
           >
             Add New Product
           </Link>

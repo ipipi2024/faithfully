@@ -79,9 +79,12 @@ export default function HomeSlider() {
 
       {/* Slide 2: Story */}
       <div
-        className={`absolute inset-0 bg-gradient-to-br from-purple-900 to-indigo-900 flex items-center justify-center transition-transform duration-1000 ${
+        className={`absolute inset-0 flex items-center justify-center transition-transform duration-1000 ${
           currentSlide === 1 ? 'translate-x-0' : currentSlide < 1 ? 'translate-x-full' : '-translate-x-full'
         }`}
+        style={{
+          background: 'linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%)',
+        }}
       >
         <div className="max-w-4xl px-8 text-white text-center">
           <h2 className="text-5xl font-bold mb-8">Our Story</h2>
@@ -98,9 +101,10 @@ export default function HomeSlider() {
 
       {/* Slide 3: Logo */}
       <div
-        className={`absolute inset-0 bg-white flex items-center justify-center transition-transform duration-1000 ${
+        className={`absolute inset-0 flex items-center justify-center transition-transform duration-1000 ${
           currentSlide === 2 ? 'translate-x-0' : 'translate-x-full'
         }`}
+        style={{ background: 'var(--background)' }}
       >
         <div className="text-center">
           <img
@@ -110,7 +114,17 @@ export default function HomeSlider() {
           />
           <Link
             href="/products"
-            className="inline-block bg-purple-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-purple-700 transition-colors"
+            className="inline-block px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300"
+            style={{
+              background: 'var(--primary)',
+              color: 'white',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'var(--primary-hover)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'var(--primary)';
+            }}
           >
             Browse Products
           </Link>

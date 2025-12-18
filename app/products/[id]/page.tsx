@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import ThemeToggle from "../../components/ThemeToggle";
 
 interface Product {
   _id: string;
@@ -39,19 +40,20 @@ export default function ProductDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <p className="text-gray-500">Loading product...</p>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--background)' }}>
+        <p style={{ color: 'var(--muted-foreground)' }}>Loading product...</p>
       </div>
     );
   }
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">Product Not Found</h1>
+      <div className="min-h-screen flex flex-col items-center justify-center" style={{ background: 'var(--background)' }}>
+        <h1 className="text-2xl font-bold mb-4" style={{ color: 'var(--foreground)' }}>Product Not Found</h1>
         <Link
           href="/products"
-          className="text-blue-600 hover:text-blue-800 underline"
+          className="underline"
+          style={{ color: 'var(--primary)' }}
         >
           Back to Products
         </Link>
@@ -60,12 +62,14 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{ background: 'var(--background)' }}>
+      <ThemeToggle />
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Back button */}
         <Link
           href="/products"
-          className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-8"
+          className="inline-flex items-center mb-8"
+          style={{ color: 'var(--primary)' }}
         >
           <svg
             className="w-5 h-5 mr-2"
@@ -83,7 +87,7 @@ export default function ProductDetailPage() {
           Back to Products
         </Link>
 
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div className="rounded-lg shadow-lg overflow-hidden" style={{ background: 'var(--card-bg)', border: '1px solid var(--card-border)' }}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Image Gallery */}
             <div className="p-8">
@@ -104,9 +108,10 @@ export default function ProductDetailPage() {
                           onClick={() => setSelectedImage(idx)}
                           className={`flex-1 ${
                             selectedImage === idx
-                              ? "ring-2 ring-blue-500"
+                              ? "opacity-100"
                               : "opacity-60 hover:opacity-100"
                           }`}
+                          style={selectedImage === idx ? { outline: `2px solid var(--primary)` } : {}}
                         >
                           <img
                             src={image}
@@ -119,29 +124,29 @@ export default function ProductDetailPage() {
                   )}
                 </div>
               ) : (
-                <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center">
-                  <p className="text-gray-500">No image available</p>
+                <div className="w-full h-96 rounded-lg flex items-center justify-center" style={{ background: 'var(--muted)' }}>
+                  <p style={{ color: 'var(--muted-foreground)' }}>No image available</p>
                 </div>
               )}
             </div>
 
             {/* Product Details */}
             <div className="p-8">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">
+              <h1 className="text-4xl font-bold mb-4" style={{ color: 'var(--foreground)' }}>
                 {product.name}
               </h1>
 
               <div className="mb-6">
-                <h2 className="text-lg font-semibold text-gray-700 mb-2">
+                <h2 className="text-lg font-semibold mb-2" style={{ color: 'var(--foreground)' }}>
                   Description
                 </h2>
-                <p className="text-gray-600 leading-relaxed whitespace-pre-wrap">
+                <p className="leading-relaxed whitespace-pre-wrap" style={{ color: 'var(--muted-foreground)' }}>
                   {product.description}
                 </p>
               </div>
 
-              <div className="border-t pt-6">
-                <p className="text-sm text-gray-500">
+              <div className="pt-6" style={{ borderTop: '1px solid var(--card-border)' }}>
+                <p className="text-sm" style={{ color: 'var(--muted-foreground)' }}>
                   Added on {new Date(product.createdAt).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
@@ -155,12 +160,13 @@ export default function ProductDetailPage() {
 
         {/* Related Products Section - Optional */}
         <div className="mt-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          <h2 className="text-2xl font-bold mb-6" style={{ color: 'var(--foreground)' }}>
             More Products
           </h2>
           <Link
             href="/products"
-            className="text-blue-600 hover:text-blue-800 underline"
+            className="underline"
+            style={{ color: 'var(--primary)' }}
           >
             View all products →
           </Link>
