@@ -87,15 +87,33 @@ export default function HomeSlider() {
         }}
       >
         <div className="max-w-4xl px-8 text-white text-center">
-          <h2 className="text-5xl font-bold mb-8">Our Story</h2>
-          <p className="text-xl leading-relaxed">
-            We believe in creating meaningful connections through quality products.
-            Our journey began with a simple vision: to bring authentic, carefully curated
-            items to people who value craftsmanship and integrity. Every product we offer
-            is selected with care, ensuring that it meets our high standards of excellence.
-            Join us in celebrating quality, authenticity, and the joy of discovering
-            something truly special.
-          </p>
+          <h2 className="text-5xl font-bold mb-8">Faithfully — Our Story</h2>
+          <div className="text-lg leading-relaxed space-y-6">
+            <p>
+              At Faithfully, we believe intimacy within marriage is a sacred gift—created by God, blessed by covenant, and strengthened through faith. Our lingerie is designed not to compete with the world's definition of desire, but to honor God's design for love, unity, and devotion between husband and wife.
+            </p>
+            <p>
+              Rooted in Christian beliefs, Faithfully exists to celebrate marital intimacy where Christ is the center, fidelity is cherished, and love is expressed with purity of heart. We create pieces that are elegant, modestly sensual, and intentionally crafted to serve marriage—not culture.
+            </p>
+            <p>
+              Marriage is holy. Desire is not shameful when it flows from love, commitment, and faith. Our collections are meant to inspire connection, confidence, and joy within the boundaries God lovingly established.
+            </p>
+            <div className="my-6">
+              <p className="font-semibold mb-3">At Faithfully, we stand for:</p>
+              <ul className="text-base space-y-2">
+                <li>• Faith-based marriage</li>
+                <li>• Lifelong fidelity</li>
+                <li>• Intimacy rooted in love, not lust</li>
+                <li>• Christ-centered homes</li>
+              </ul>
+            </div>
+            <p>
+              Every design is a reminder that when a marriage is built on Christ, even the most intimate moments become acts of love, trust, and grace.
+            </p>
+            <p className="italic text-xl mt-8">
+              "Therefore what God has joined together, let no one separate." — Mark 10:9
+            </p>
+          </div>
         </div>
       </div>
 
