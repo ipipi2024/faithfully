@@ -9,7 +9,7 @@ interface Product {
   _id: string;
   name: string;
   description: string;
-  price: number;
+  price?: number;
   images: string[];
   createdAt: string;
 }
@@ -137,9 +137,11 @@ export default function ProductDetailPage() {
                 {product.name}
               </h1>
 
-              <p className="text-3xl font-bold mb-6" style={{ color: 'var(--primary)' }}>
-                ${product.price.toFixed(2)}
-              </p>
+              {product.price != null && (
+                <p className="text-3xl font-bold mb-6" style={{ color: 'var(--primary)' }}>
+                  ${product.price.toFixed(2)}
+                </p>
+              )}
 
               <div className="mb-6">
                 <h2 className="text-lg font-semibold mb-2" style={{ color: 'var(--foreground)' }}>

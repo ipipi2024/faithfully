@@ -19,7 +19,7 @@ interface Product {
   _id: string;
   name: string;
   description: string;
-  price: number;
+  price?: number;
   images: string[];
 }
 
@@ -58,7 +58,9 @@ export default function EditProductPage() {
           setExistingImages(data.data.images || []);
           setValue("name", data.data.name);
           setValue("description", data.data.description);
-          setValue("price", data.data.price);
+          if (data.data.price != null) {
+            setValue("price", data.data.price);
+          }
         } else {
           setError("Product not found");
         }

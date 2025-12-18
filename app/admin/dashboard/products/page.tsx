@@ -8,7 +8,7 @@ interface Product {
   _id: string;
   name: string;
   description: string;
-  price: number;
+  price?: number;
   images: string[];
   createdAt: string;
 }
@@ -122,7 +122,7 @@ export default function ProductsPage() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm font-medium text-gray-900">
-                      ${product.price.toFixed(2)}
+                      {product.price != null ? `$${product.price.toFixed(2)}` : '-'}
                     </div>
                   </td>
                   <td className="px-6 py-4">
